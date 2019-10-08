@@ -38,12 +38,14 @@ if (isset($_SESSION['username']) ) {
 					WHERE user_id = :id ";
         $statement2 = $db->prepare($sqlQuery2);
         $statement2->execute( array(':id'=>$id) );
-
-        if ($row2 = $statement2->fetch()){
+        $row2 = $statement2->fetch();
+            $activityName = $row2['item_name'];
+            $valid_to = $row2['valid_to'];
+       /* if ($row2 = $statement2->fetch()){
             $activityName = $row2['item_name'];
             $valid_to = $row2['valid_to'];
 
-        }
+        }*/
 		if ($row = $statement->fetch()) {# ie, if some  data is pulled from the database
 			$email = $row['email'];
 			$username = $row['username'];

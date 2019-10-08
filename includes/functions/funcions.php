@@ -39,7 +39,7 @@ function alertEmail($dateNow){
         $emailAlert = $row['emailalert'];
 
         if ($result < $dateNow && $emailAlert < 2){
-            echo 'result less from  today:';
+            //echo 'result less from  today:';
             //echo $result;
 
                 $user_id = $row['user_id']."<br />\n";
@@ -58,15 +58,21 @@ function alertEmail($dateNow){
 											                line-height:1.8em;">
 												<h2>Subscription Alert </h2>
 												<p>Dear '.$username.'<br><br>We would like to let you know that your subscription is over, So please visit our site and subscribe again </p>
-												<p><a href="http://localhost/projects/SHIPMENTSBANK/login"> Subscribe from here..</a></p>
+												<p><a href="https://shipmintsbank.irselha/login"> Subscribe from here..</a></p>
 												<p><strong>&copy;2019 Shipments Bank System </strong></p>
 											</body>
 									</html>';
 
-                    $mail->addAddress($email, $_SESSION['username']); #  $email is necessary BUT $username is optional..
+                    /*$mail->addAddress($email, $_SESSION['username']); #  $email is necessary BUT $username is optional..
                     $mail->Subject = "message from SHIPMENTS BANK SYSTEM.";
                     $mail->Body = $mail_body;
-                    $mail->Send();
+                    $mail->Send();*/
+                    $headers = 'From: Shipments Bank kldrapqwb8dz@n3plcpnl0096.prod.ams3.secureserver.net' . "\r\n" ;
+                    $headers .='Reply-To: '. $email . "\r\n" ;
+                    $headers .='X-Mailer: PHP/' . phpversion();
+                    $headers .= "MIME-Version: 1.0\r\n";
+                    $headers .= "Content-type: text/html; charset=iso-8859-1\r\n";
+                    mail($email, ' SHIBMENTS BANK SYSTEM', $mail_body, $headers);
 
                     // Update email alert value.
                     $sqlAlertUpdate = "UPDATE shipmintsbank.user_subscriptions SET `emailalert` = 2 WHERE `user_id` =:user_id";
@@ -74,7 +80,7 @@ function alertEmail($dateNow){
                     $alertUpdate->execute(array(':user_id'=> $user_id));
                 }
         }elseif ($result < date("Y-m-d H:i:s", strtotime($dateNow.'-5 days')) && $emailAlert < 1){
-            echo 'result less 5 days:';
+            //echo 'result less 5 days:';
             echo $result;
 
                 $user_id = $row['user_id']."<br />\n";
@@ -93,15 +99,21 @@ function alertEmail($dateNow){
 											                line-height:1.8em;">
 												<h2>Subscription Alert </h2>
 												<p>Dear '.$username.'<br><br>We would like to let you know that your subscription is over after 5 days, So please visit our site and subscribe again </p>
-												<p><a href="http://localhost/projects/SHIPMENTSBANK/login"> Subscribe from here..</a></p>
+												<p><a href="https://shipmintsbank.irselha/login"> Subscribe from here..</a></p>
 												<p><strong>&copy;2019 Shipments Bank System </strong></p>
 											</body>
 									</html>';
 
-                    $mail->addAddress($email, $_SESSION['username']); #  $email is necessary BUT $username is optional..
+                    /*$mail->addAddress($email, $_SESSION['username']); #  $email is necessary BUT $username is optional..
                     $mail->Subject = "message from SHIPMENTS BANK SYSTEM.";
                     $mail->Body = $mail_body;
-                    $mail->Send();
+                    $mail->Send();*/
+                    $headers = 'From: Shipments Bank kldrapqwb8dz@n3plcpnl0096.prod.ams3.secureserver.net' . "\r\n" ;
+                    $headers .='Reply-To: '. $email . "\r\n" ;
+                    $headers .='X-Mailer: PHP/' . phpversion();
+                    $headers .= "MIME-Version: 1.0\r\n";
+                    $headers .= "Content-type: text/html; charset=iso-8859-1\r\n";
+                    mail($email, ' SHIBMENTS BANK SYSTEM', $mail_body, $headers);
 
                     // Update email alert value
                     $sqlAlertUpdate = "UPDATE shipmintsbank.user_subscriptions SET `emailalert` = 1 WHERE `user_id` =:user_id";
